@@ -1,0 +1,195 @@
+body {
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 1.4em;
+}
+  
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5em;
+    font-weight: 600;
+    line-height: 1.2em;
+    border-bottom: 1px solid #777777;
+    padding: 15px 0px;
+    margin: 0px 0px 15px;
+}
+
+h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
+    line-height: 1.2em;
+    border-bottom: 1px solid #777777;
+    padding: 15px 0px;
+    margin: 0px 0px 15px;
+}
+
+p {
+    margin: 10px 0px;
+}
+
+button {
+    font-size: .9em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 4px 0px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0c6291;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+button:hover, button:active{
+    background-color: #083D77;
+    transition-property: background-color;    
+}
+
+button:focus {
+    outline: none;
+}
+
+input {
+    border: 1px solid #777777;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1em;
+    height: 30px;
+    width: 50%;
+    margin-right: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+ol {
+    margin-bottom: 10px;
+
+}
+
+li {
+    padding: 2px 5px;
+    border-radius: 4px;    
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+ul li {
+    list-style-type: none;
+    text-align: right;
+}
+
+.card-wrapper {
+    width: 100%;
+}
+
+.card-question li:hover {
+    background-color: #F4D35E;
+    cursor: pointer;
+    /* color: white; */
+}
+
+.card-highscore {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    flex-flow: row wrap;
+}
+
+.card-highscore ul, ol {
+    margin-top: 10px;
+}
+
+.card-highscore h1, #buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-highscore header {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+}
+
+.container {
+    /* position: relative; */
+    max-width: 720px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+    background-color: #fbfef9;
+    box-shadow: 0px 0px 5px 1px rgb(216, 216, 216);
+}
+
+.highscores {
+    width: 90px;
+    padding: 10px;
+    border: 1px solid #0c6291;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 400;
+    color: #0c6291;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.highscores:hover {
+    background-color: #0c6291;
+    color: white;
+    transition-property: color, background-color;
+}
+
+.timer {
+    padding: 10px;
+    text-align: right;
+    border: 1px solid #A63446;
+    border-radius: 5px;
+    font-weight: 400;
+    color: #A63446;
+    transition-duration: 0.2s;
+}
+
+.timer #running {
+    background-color: #A63446;
+    color: white;
+    transition-property: color, background-color;
+}
+
+.input-container {
+    display: flex;
+    flex-flow: wrap;
+    /* justify-content: space-between; */
+}
+
+@media screen and (max-width: 786px) {
+    .container {
+        width: 90%;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    li {
+        margin: 0 auto;
+        width: 90%
+    }
+}
+
+/* Palette A63446 Ruby
+FBFEF9 Baby Powder
+0C6291 Sapphire
+083D77 Indigo
+F4D35E Orange-Yellow
