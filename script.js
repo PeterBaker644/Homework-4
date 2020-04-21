@@ -4,17 +4,22 @@ var cardFinish = document.querySelector(".card-finish");
 var cardHighscore = document.querySelector(".card-highscore");
 
 var startQuiz = document.querySelector("#start-quiz");
-var scoreButton = document.querySelector(".scoreButton");
+var scoreButton = document.querySelector(".score-button");
 var submitInit = document.querySelector("#submit-init");
 var back = document.querySelector("#back");
 var resetScore = document.querySelector("#reset-score");
+var timerButton = document.querySelector(".timer-button")
+
+var timeRemaining = document.querySelector("#time-remaining");
+var finalScore = document.querySelector("#final-score");
 var questionTitle = document.querySelector("#question-title");
 var questionList = document.querySelector("#question-list");
 var displayName = document.querySelector("#display-name");
 var displayScore = document.querySelector("#display-score");
-var inGame = false;
-var currentQuestion = 1;
-var highscores = [{name:"LOD", score:2},{name:"EMA", score:21},{name:"PJB", score:11},{name:"JAK", score:4},{name:"BRF", score:16}]
+var initials = document.querySelector("#initials");
+
+var highscores = [{name:"LOD", score:2},{name:"EMA", score:21},{name:"PJB", score:11},{name:"JAK", score:4},{name:"BRF", score:16}];
+var highscoresDefault = [{name:"", score:""},{name:"", score:""},{name:"", score:""},{name:"", score:""}];
 
 var questions = {
     "1": {
@@ -25,7 +30,7 @@ var questions = {
             "3",
             "Last Answer."
         ],
-        "correctAnswer": "4" 
+        "solution": "4" 
       },
       "2": {
         "question": "This is the second question. Maybe it is harder?",
@@ -35,12 +40,45 @@ var questions = {
             "3rd Answer",
             "THIS IS THE FINAL Answer."
         ],
-        "correctAnswer": "2" 
+        "solution": "2" 
       }
+}
+
+var currentQuestion = 1;
+var playerName = "ANON";
+var secondsLeft = 60;
+var inGame = false;
+
+function quizTimer() {
+    timer = setInterval(function() {
+        if (timerButton.hasAttribute("id")) {timerButton.removeAttribute("id", "incorrect");}
+        displayTime();
+        secondsLeft--;
+        // if (currentQuestion > Object.keys(questions).length){
+        //     clearInterval(timer);
+        //     hide(cardQuestion);
+        //     finalScore.textContent = timeRemaining.textContent;
+        //     currentQuestion = 1;
+        //     show(cardFinish);
+        //     console.log(finalScore);
+        // }
+        if (secondsLeft === 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+
+function displayTime() {
+    minutes = Math.floor(secondsLeft / 60).toString();
+    seconds = (secondsLeft % 60).toString();
+    timeRemaining.textContent = minutes.padStart(1, '0') + ":" + seconds.padStart(2, '0');
 }
 
 // This line will take the player scores and sort them into an ordered object array.
 highscores.sort(compareScore);
+
+// This establishes the initial display time.
+displayTime();
 
 function compareScore(a, b) {
     if (a.score > b.score) {
@@ -71,13 +109,15 @@ function setScores() {
 function setQuestion() {
     questionList.innerHTML = "";
     questionTitle.textContent = questions[currentQuestion].question;
+    var i = 0;
     for (var value of questions[currentQuestion].answers) {
         var li = document.createElement("li");
+        i++;
+        li.setAttribute("id", i);
         li.textContent = value;
         questionList.appendChild(li);
     }
 }
-
 
 function hide(element) {
     element.removeAttribute("id", "visible")
@@ -87,19 +127,32 @@ function show(element) {
     element.setAttribute("id", "visible")
 }
 
+function disableHighscore() {
+    scoreButton.setAttribute("id", "disabled")
+    inGame = true;
+}
+
+function enableHighscore() {
+    scoreButton.removeAttribute("id", "disabled")
+    inGame = false;
+}
+
 startQuiz.addEventListener("click", function () {
     hide(cardTitle);
     show(cardQuestion);
-    // startGame();
     setQuestion();
+    quizTimer();
+    disableHighscore();
 });
 
 scoreButton.addEventListener("click", function () {
-    setScores();
-    hide(cardTitle);
-    hide(cardQuestion);
-    hide(cardFinish);
-    show(cardHighscore);
+    if (!inGame) {
+        setScores();
+        hide(cardTitle);
+        hide(cardQuestion);
+        hide(cardFinish);
+        show(cardHighscore);
+    }
 });
 
 back.addEventListener("click", function () {
@@ -107,27 +160,45 @@ back.addEventListener("click", function () {
     show(cardTitle);
 });
 
-cardQuestion.querySelector("ol").addEventListener("click", function () {
+cardQuestion.querySelector("ol").addEventListener("click", function (event) {
+    console.log(event.target.id);
+    if (event.target.id !== questions[currentQuestion].solution){
+        secondsLeft -= 10;
+        timerButton.setAttribute("id", "incorrect");
+        console.log(timerButton.getAttributeNames());
+        displayTime();
+    }
     if (currentQuestion === Object.keys(questions).length) {
+        clearInterval(timer);
         hide(cardQuestion);
         currentQuestion = 1;
+        finalScore.textContent = timeRemaining.textContent;
         show(cardFinish);
         console.log("You're finished playing");
     } else {
-        console.log("Next Question!");
-        hide(cardQuestion);
         currentQuestion++;
         setQuestion();
-        show(cardQuestion);
     }
 });
 
-cardFinish.addEventListener("click", function () {
+submitInit.addEventListener("click", function () {
+    if (initials.value) {
+        playerName = initials.value;
+        // If you want to be really strict:
+        // playerName = initials.value.slice(0, 3).toUpperCase();
+    }
+    highscores.push({name: playerName, score: finalScore.textContent});
+    setScores();
+    secondsLeft = 60;
+    displayTime();
+    enableHighscore();
     hide(cardFinish);
-
     show(cardHighscore);
 });
 
 
 
 // Create an array of objects where key = totalscore, and value = name. Sort array by value. If array.length > 10, delete the last value of the array.
+
+// Every time the player fails a question, have the clock flash red and the time go down by 10 seconds.
+

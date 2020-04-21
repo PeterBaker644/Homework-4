@@ -146,7 +146,7 @@ ul li {
 
 }
 
-.scoreButton {
+.score-button {
     width: 90px;
     padding: 10px;
     border: 1px solid #0c6291;
@@ -158,23 +158,38 @@ ul li {
     transition-duration: 0.2s;
 }
 
-.scoreButton:hover {
+.score-button:hover {
     background-color: #0c6291;
     color: white;
     transition-property: color, background-color;
 }
 
-.timer {
+#disabled {
+    background-color: #aaaaaa;
+    border:#aaaaaa;
+    color:white;
+    cursor: default;
+}
+
+#disabled:hover {
+    background-color: #aaaaaa;
+    border:#aaaaaa;
+    color:white;
+    cursor: default;
+}
+
+.timer-button {
     padding: 10px;
     text-align: right;
     border: 1px solid #A63446;
     border-radius: 5px;
     font-weight: 400;
     color: #A63446;
-    transition-duration: 0.4s;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
 }
 
-.timer #running {
+#incorrect {
     background-color: #A63446;
     color: white;
     transition-property: color, background-color;
