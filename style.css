@@ -146,7 +146,7 @@ ul li {
 
 }
 
-.highscores {
+.scoreButton {
     width: 90px;
     padding: 10px;
     border: 1px solid #0c6291;
@@ -158,7 +158,7 @@ ul li {
     transition-duration: 0.2s;
 }
 
-.highscores:hover {
+.scoreButton:hover {
     background-color: #0c6291;
     color: white;
     transition-property: color, background-color;
