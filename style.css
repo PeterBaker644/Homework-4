@@ -3,6 +3,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     line-height: 1.4em;
+    background-color: #f5f0ea;
 }
   
 h1 {
@@ -60,6 +61,7 @@ input {
     font-size: 1em;
     height: 30px;
     width: 50%;
+    margin-top: 5px;
     margin-right: 20px;
 }
 
@@ -101,8 +103,19 @@ ul li {
     flex-flow: row wrap;
 }
 
-.card-highscore ul, ol {
-    margin-top: 10px;
+.card-highscore header {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.card-highscore .table {
+    width: 50%;
+}
+
+.card-highscore li:nth-child(odd) { 
+    background: #B9EFF4;
+    border-radius: 0; 
 }
 
 .card-highscore h1, #buttons{
@@ -111,9 +124,12 @@ ul li {
     justify-content: space-between;
 }
 
-.card-highscore header {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
+#reset-score {
+    background-color: #A63446;
+}
+
+#reset-score:hover {
+    background-color: #7B1F2A;
 }
 
 .container {
@@ -155,7 +171,7 @@ ul li {
     border-radius: 5px;
     font-weight: 400;
     color: #A63446;
-    transition-duration: 0.2s;
+    transition-duration: 0.4s;
 }
 
 .timer #running {
@@ -188,7 +204,8 @@ ul li {
     }
 }
 
-/* Palette A63446 Ruby
+/* Palette 
+A63446 Ruby
 FBFEF9 Baby Powder
 0C6291 Sapphire
 083D77 Indigo
