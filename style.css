@@ -96,22 +96,6 @@ ul li {
     cursor: pointer;
 }
 
-.card-title {
-    height: 300px;
-}
-
-.card-questions {
-    height: 100%;
-}
-
-.card-finish {
-    height: 100%;
-}
-
-.card-highscore {
-    height: 100%;
-}
-
 .card-highscore {
     display: flex;
     justify-content: space-between;
