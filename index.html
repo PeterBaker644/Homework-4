@@ -13,9 +13,45 @@
 
 <body>
 
-    <main>
-    </main>
-    
+    <div class="container">
+        <div class="high-scores">High Scores</div>
+        <div class="timer">Time Remaining:<span id="time-remaining"> 0</span></div>
+        <div class="card-title">
+            <h1>This is a sample question?</h1>
+            <ol>
+                <li>This is the first answer</li>
+                <li>This is the second answer to the question</li>
+                <li>3</li>
+                <li>Last answer</li>
+            </ol>
+        </div>
+        <div class="card-title">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <button>Start Quiz!</button>
+        </div>
+        <div class="card-finish">
+            <h1>All done!</h1>
+            <div>Your final score is <span id="final-score"> 0</span></div>
+            <div class="input-container"> 
+                <label for="initials">Submit your initials to save your high score! </label>
+                <input type="text" name="initials" id="initials" placeholder="PJB" />
+                <button>Submit!</button>
+            </div>
+        </div>
+        <div class="card-highscore">
+            <h1>High Scores</h1>
+            <ol>
+                <li>ABC</li>
+                <li>DEF</li>
+                <li>Garret Hilbert</li>
+                <li>Icarus</li>
+            </ol>
+            <button>Go Back</button>
+            <button>Clear Scores</button>
+        </div>
+    </div>
+   
     <script src="./script.js"></script>
 </body>
 
