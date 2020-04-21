@@ -63,7 +63,14 @@ function quizTimer() {
         //     console.log(finalScore);
         // }
         if (secondsLeft === 0) {
+            // This bit may need cleanup
             clearInterval(timer);
+            displayTime();
+            hide(cardQuestion);
+            currentQuestion = 1;
+            finalScore.textContent = timeRemaining.textContent;
+            show(cardFinish);
+            console.log("You're finished playing");
         }
     }, 1000);
 }
