@@ -49,9 +49,15 @@ var playerName = "ANON";
 var secondsLeft = 60;
 var inGame = false;
 
+function resetIncorrect() {
+    if (timerButton.hasAttribute("id")) {
+        timerButton.removeAttribute("id", "incorrect");
+    }
+}
+
 function quizTimer() {
     timer = setInterval(function() {
-        if (timerButton.hasAttribute("id")) {timerButton.removeAttribute("id", "incorrect");}
+        resetIncorrect();
         displayTime();
         secondsLeft--;
         // if (currentQuestion > Object.keys(questions).length){
@@ -65,6 +71,7 @@ function quizTimer() {
         if (secondsLeft === 0) {
             // This bit may need cleanup
             clearInterval(timer);
+            resetIncorrect();
             displayTime();
             hide(cardQuestion);
             currentQuestion = 1;
@@ -177,6 +184,7 @@ cardQuestion.querySelector("ol").addEventListener("click", function (event) {
     }
     if (currentQuestion === Object.keys(questions).length) {
         clearInterval(timer);
+        resetIncorrect();
         hide(cardQuestion);
         currentQuestion = 1;
         finalScore.textContent = timeRemaining.textContent;
