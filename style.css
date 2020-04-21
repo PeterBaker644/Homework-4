@@ -94,7 +94,6 @@ ul li {
 .card-question li:hover {
     background-color: #F4D35E;
     cursor: pointer;
-    /* color: white; */
 }
 
 .card-highscore {
@@ -134,7 +133,6 @@ ul li {
 }
 
 .container {
-    /* position: relative; */
     max-width: 720px;
     margin: 20px auto;
     padding: 20px;
@@ -184,24 +182,25 @@ ul li {
 .input-container {
     display: flex;
     flex-flow: wrap;
-    /* justify-content: space-between; */
 }
 
 @media screen and (max-width: 786px) {
     .container {
         width: 90%;
-        box-shadow: none;
-        margin: 0;
+        margin: 0 auto;
+        border-radius: 0px 0px 10px 10px;
     }
 
     h2 {
         font-size: 1.5em;
         text-align: center;
     }
+}
 
-    li {
-        margin: 0 auto;
-        width: 90%
+@media screen and (max-width: 576px) {
+    .container {
+        width: auto;
+        border-radius: 0px;
     }
 }
 
