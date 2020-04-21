@@ -17,12 +17,12 @@
         <div class="highscores">High Scores</div>
         <div class="timer">Time Remaining:<span id="time-remaining"> 0:00</span></div>
         <div class="card-wrapper">
-            <div class="card-title">
+            <div class="card-title hidden" id="visible">
                 <h1>Coding Quiz Challenge</h1>
                 <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
                 <button id="start-quiz">Start Quiz!</button>
             </div>
-            <div class="card-question">
+            <div class="card-question hidden">
                 <h2>This is a sample question? This is a really long sample question that is going to wrap at least once.</h2>
                 <ol>
                     <li>This is the first answer.</li>
@@ -31,7 +31,7 @@
                     <li>Last answer.</li>
                 </ol>
             </div>
-            <div class="card-finish">
+            <div class="card-finish hidden">
                 <h1>All done!</h1>
                 <div>Your final score is <span id="final-score"> 0</span></div>
                 <div>Submit your initials to save your high score!</div>
@@ -40,7 +40,7 @@
                     <button id="submit-init">Submit!</button>
                 </div>
             </div>
-            <div class="card-highscore">
+            <div class="card-highscore hidden">
                 <h1>High Scores</h1>
                 <div class="table">
                     <header>Names</header>

@@ -10,47 +10,56 @@ var back = document.querySelector("#back")
 var resetScore = document.querySelector("#reset-score")
 var inGame = false;
 
-cardTitle.setAttribute("style", "display:block")
-cardFinish.setAttribute("style", "display:none")
-cardHighscore.setAttribute("style", "display:none")
-cardQuestion.setAttribute("style", "display:none")
+var questions = {
+    "1": {
+        "question": "This is a sample question? This is a really long sample question that is going to wrap at least once.",
+        "answers": {
+            "1": "This is the first answer.",
+            "2": "This is the second answer to the question.",
+            "3": "3",
+            "4": "Last Answer.",
+        },
+        "correctAnswer": "4" 
+      }
+}
 
 
+function hide(element) {
+    element.removeAttribute("id", "visible")
+}
 
-
-
-
-
+function show(element) {
+    element.setAttribute("id", "visible")
+}
 
 
 
 
 
 startQuiz.addEventListener("click", function () {
-    cardTitle.setAttribute("style", "display:none")
-    cardQuestion.setAttribute("style", "display:block")
+    hide(cardTitle);
+    show(cardQuestion);
     // startGame();
 });
 
 highScores.addEventListener("click", function () {
-    cardTitle.setAttribute("style", "display:none")
-    cardQuestion.setAttribute("style", "display:none")
-    cardFinish.setAttribute("style", "display:none")
-    cardHighscore.setAttribute("style", "display:flex")
+    hide(cardTitle);
+    hide(cardQuestion);
+    hide(cardFinish);
+    show(cardHighscore);
 });
 
 back.addEventListener("click", function () {
-    cardHighscore.setAttribute("style", "display:none")
-    cardTitle.setAttribute("style", "display:block")
-
+    hide(cardHighscore);
+    show(cardTitle);
 });
 
 cardQuestion.querySelector("ol").addEventListener("click", function () {
-    cardQuestion.setAttribute("style", "display:none")
-    cardFinish.setAttribute("style", "display:block")
+    hide(cardQuestion);
+    show(cardFinish);
 });
 
 cardFinish.addEventListener("click", function () {
-    cardFinish.setAttribute("style", "display:none")
-    cardHighscore.setAttribute("style", "display:flex")
+    hide(cardFinish);
+    show(cardHighscore);
 });
