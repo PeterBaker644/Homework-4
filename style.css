@@ -26,14 +26,13 @@ h2 {
 }
 
 p {
-    margin: 10px 0px;
+    margin-bottom: 10px;
 }
 
 button {
     font-size: .9em;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    /* margin: 4px 0px; */
     padding: 10px 15px;
     border-radius: 5px;
     border: none;
@@ -94,7 +93,6 @@ ul li {
 .card-highscore {
     display: flex;
     justify-content: space-between;
-    /* padding-bottom: 8px; */
     flex-flow: row wrap;
 }
 
@@ -161,17 +159,17 @@ ul li {
 }
 
 #disabled {
-    background-color: #aaaaaa;
-    border:#aaaaaa;
-    color:white;
+    background-color: #e7e7e7;
+    border:1px solid rgb(216, 216, 216);
+    color: white;
     cursor: default;
 }
 
 #disabled:hover {
-    background-color: #aaaaaa;
-    border:#aaaaaa;
+    background-color: #dfdfdf;
+    border:1px solid rgb(216, 216, 216);
     color:white;
-    cursor: default;
+    cursor: pointer;
 }
 
 .timer-button {
