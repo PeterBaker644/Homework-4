@@ -22,7 +22,7 @@ var initials = document.querySelector("#initials");
 var highscores = JSON.parse(localStorage.getItem("scores"));
 var highscoresDefault = [];
 var currentQuestion = 1;
-var playerName = "---";
+var playerName = "ANON";
 var secondsLeft = 120;
 var inGame = false;
 var questions = {
@@ -91,6 +91,8 @@ var questions = {
 
 // This establishes the initial display time.
 displayTime();
+// This populates the high-score page on first use.
+setScores();
 
 function quizTimer() {
     timer = setInterval(function() {
@@ -127,7 +129,7 @@ function compareScore(a, b) {
 }
 
 function setScores() {
-    if (highscores == null) {
+    if (highscores === null) {
         highscores = highscoresDefault;
     } else {
         highscores.sort(compareScore);
