@@ -23,29 +23,70 @@ var highscores = JSON.parse(localStorage.getItem("scores"));
 var highscoresDefault = [];
 var currentQuestion = 1;
 var playerName = "ANON";
-var secondsLeft = 60;
+var secondsLeft = 240;
 var inGame = false;
 var questions = {
     "1": {
-        "question": "This is a sample question? This is a really long sample question that is going to wrap at least once.",
+        "question": "Which of the following is a third-party javascript API?",
         "answers": [
-            "This is the first answer.",
-            "This is the second answer to the question.",
-            "3",
-            "Last Answer."
-        ],
-        "solution": "4" 
-      },
-      "2": {
-        "question": "This is the second question. Maybe it is harder?",
-        "answers": [
-            "This is the 1st answer to the question.",
-            "This is the 2nd answer.",
-            "3rd Answer",
-            "THIS IS THE FINAL Answer."
+            "JSON",
+            "jQuery",
+            "Bootstrap",
+            "AJAX"
         ],
         "solution": "2" 
-      }
+    },
+    "2": {
+        "question": "Which of the following can be used to properly enclose a string?",
+        "answers": [
+            "Double Quotes",
+            "Single Quotes",
+            "Backticks",
+            "All of the Above"
+        ],
+        "solution": "4" 
+    },
+    "3": {
+        "question": "Which of the following loops is not a valid javascript statement?",
+        "answers": [
+            "for",
+            "for/in",
+            "for/of",
+            "until",
+            "while"
+        ],
+        "solution": "4" 
+    },
+    "4": {
+        "question": "It is impossible to loop through an object without arrays.",
+        "answers": [
+            "True",
+            "False"
+        ],
+        "solution": "2" 
+    },
+    "5": {
+        "question": "Which of the following is a valid method of saving an object to local storage?",
+        "answers": [
+            'localStorage.setItem(storedObject, JSON.stringify(object))',
+            'Object.localStorage("storedObject", JSON.stringify(object))',
+            'setItem.localStorage(storedObject, JSON.stringify("object"))',
+            'localStorage.storedObject(setItem, JSON.stringify(object))',
+            'None of the above'
+        ],
+        "solution": "1" 
+    },
+    "6": {
+        "question": "Which of the following functions will evaluate properly with the given information?",
+        "answers": [
+            'minutes = Math.floor(secondsLeft % 60).padStart(1, "0")',
+            'minutes = Math.floor(secondsLeft % 60).toString()',
+            'minutes = Math.floor(secondsLeft / 60).padStart(1, "0")',
+            'minutes = Math.floor(secondsLeft / 60).toString().padStart(1, "0")',
+            'None of the above'
+        ],
+        "solution": "4" 
+    }
 }
 
 // This establishes the initial display time.
