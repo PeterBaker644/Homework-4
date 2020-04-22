@@ -1,15 +1,16 @@
+// Card Variables
 var cardTitle = document.querySelector(".card-title");
 var cardQuestion = document.querySelector(".card-question");
 var cardFinish = document.querySelector(".card-finish");
 var cardHighscore = document.querySelector(".card-highscore");
-
+// Button Variables
 var startQuiz = document.querySelector("#start-quiz");
 var scoreButton = document.querySelector(".score-button");
 var submitInit = document.querySelector("#submit-init");
 var back = document.querySelector("#back");
 var resetScore = document.querySelector("#reset-score");
 var timerButton = document.querySelector(".timer-button")
-
+// Text Variables
 var timeRemaining = document.querySelector("#time-remaining");
 var finalScore = document.querySelector("#final-score");
 var questionTitle = document.querySelector("#question-title");
@@ -17,9 +18,13 @@ var questionList = document.querySelector("#question-list");
 var displayName = document.querySelector("#display-name");
 var displayScore = document.querySelector("#display-score");
 var initials = document.querySelector("#initials");
-
+// Internal Variables
 var highscores = JSON.parse(localStorage.getItem("scores"));
 var highscoresDefault = [];
+var currentQuestion = 1;
+var playerName = "ANON";
+var secondsLeft = 60;
+var inGame = false;
 var questions = {
     "1": {
         "question": "This is a sample question? This is a really long sample question that is going to wrap at least once.",
@@ -43,12 +48,6 @@ var questions = {
       }
 }
 
-var currentQuestion = 1;
-var playerName = "ANON";
-var secondsLeft = 60;
-var inGame = false;
-
-
 // This establishes the initial display time.
 displayTime();
 
@@ -58,7 +57,6 @@ function quizTimer() {
         displayTime();
         secondsLeft--;
         if (secondsLeft === 0) {
-            // This bit may need cleanup
             clearInterval(timer);
             resetIncorrect();
             displayTime();
@@ -66,7 +64,6 @@ function quizTimer() {
             currentQuestion = 1;
             finalScore.textContent = timeRemaining.textContent;
             show(cardFinish);
-            console.log("You're finished playing");
         }
     }, 1000);
 }
@@ -180,7 +177,6 @@ back.addEventListener("click", function () {
 });
 
 cardQuestion.querySelector("ol").addEventListener("click", function (event) {
-    console.log(event.target.id);
     if (event.target.id !== questions[currentQuestion].solution){
         secondsLeft -= 10;
         timerButton.setAttribute("id", "incorrect");
@@ -216,10 +212,3 @@ submitInit.addEventListener("click", function () {
     show(cardHighscore);
     initials.value = "";
 });
-
-
-
-// Create an array of objects where key = totalscore, and value = name. Sort array by value. If array.length > 10, delete the last value of the array.
-
-// Every time the player fails a question, have the clock flash red and the time go down by 10 seconds.
-
