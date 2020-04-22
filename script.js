@@ -22,8 +22,8 @@ var initials = document.querySelector("#initials");
 var highscores = JSON.parse(localStorage.getItem("scores"));
 var highscoresDefault = [];
 var currentQuestion = 1;
-var playerName = "ANON";
-var secondsLeft = 240;
+var playerName = "---";
+var secondsLeft = 120;
 var inGame = false;
 var questions = {
     "1": {
@@ -246,7 +246,7 @@ submitInit.addEventListener("click", function () {
     }
     highscores.push({name: playerName, score: finalScore.textContent});
     setScores();
-    secondsLeft = 60;
+    secondsLeft = 120;
     displayTime();
     enableHighscore();
     hide(cardFinish);
