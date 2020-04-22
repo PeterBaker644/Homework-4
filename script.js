@@ -18,8 +18,9 @@ var displayName = document.querySelector("#display-name");
 var displayScore = document.querySelector("#display-score");
 var initials = document.querySelector("#initials");
 
-var highscores = [{name:"LOD", score:2},{name:"EMA", score:21},{name:"PJB", score:11},{name:"JAK", score:4},{name:"BRF", score:16}];
-var highscoresDefault = [{name:"", score:""},{name:"", score:""},{name:"", score:""},{name:"", score:""}];
+var highscores = JSON.parse(localStorage.getItem("scores"));
+// var highscoresDefault = [{name:"LOD", score:2},{name:"EMA", score:21},{name:"PJB", score:11},{name:"JAK", score:4},{name:"BRF", score:16}];
+var highscoresDefault = [{name:"", score:"- "},{name:"", score:"- "},{name:"", score:"- "},{name:"", score:"- "}];
 
 var questions = {
     "1": {
@@ -49,11 +50,9 @@ var playerName = "ANON";
 var secondsLeft = 60;
 var inGame = false;
 
-function resetIncorrect() {
-    if (timerButton.hasAttribute("id")) {
-        timerButton.removeAttribute("id", "incorrect");
-    }
-}
+
+// This establishes the initial display time.
+displayTime();
 
 function quizTimer() {
     timer = setInterval(function() {
@@ -88,12 +87,6 @@ function displayTime() {
     timeRemaining.textContent = minutes.padStart(1, '0') + ":" + seconds.padStart(2, '0');
 }
 
-// This line will take the player scores and sort them into an ordered object array.
-highscores.sort(compareScore);
-
-// This establishes the initial display time.
-displayTime();
-
 function compareScore(a, b) {
     if (a.score > b.score) {
         result = -1;
@@ -106,16 +99,27 @@ function compareScore(a, b) {
 }
 
 function setScores() {
+    if (highscores == null) {
+        highscores = highscoresDefault;
+    } else {
+        highscores.sort(compareScore);
+    }
+    if (highscores.length > 10) {
+        highscores.pop();
+    }
+    localStorage.setItem("scores", JSON.stringify(highscores));
     displayName.innerHTML = "";
     displayScore.innerHTML = "";
     for (var value of highscores) {
         var li = document.createElement("li");
         li.textContent = value.name;
+        console.log(value.name);
         displayName.appendChild(li);
     }
     for (var value of highscores) {
         var li = document.createElement("li");
         li.textContent = value.score;
+        console.log(value.score);
         displayScore.appendChild(li);
     }
 }
@@ -149,6 +153,12 @@ function disableHighscore() {
 function enableHighscore() {
     scoreButton.removeAttribute("id", "disabled")
     inGame = false;
+}
+
+function resetIncorrect() {
+    if (timerButton.hasAttribute("id")) {
+        timerButton.removeAttribute("id", "incorrect");
+    }
 }
 
 startQuiz.addEventListener("click", function () {
