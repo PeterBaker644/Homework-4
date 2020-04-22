@@ -19,9 +19,7 @@ var displayScore = document.querySelector("#display-score");
 var initials = document.querySelector("#initials");
 
 var highscores = JSON.parse(localStorage.getItem("scores"));
-// var highscoresDefault = [{name:"LOD", score:2},{name:"EMA", score:21},{name:"PJB", score:11},{name:"JAK", score:4},{name:"BRF", score:16}];
-var highscoresDefault = [{name:"", score:"- "},{name:"", score:"- "},{name:"", score:"- "},{name:"", score:"- "}];
-
+var highscoresDefault = [];
 var questions = {
     "1": {
         "question": "This is a sample question? This is a really long sample question that is going to wrap at least once.",
@@ -59,14 +57,6 @@ function quizTimer() {
         resetIncorrect();
         displayTime();
         secondsLeft--;
-        // if (currentQuestion > Object.keys(questions).length){
-        //     clearInterval(timer);
-        //     hide(cardQuestion);
-        //     finalScore.textContent = timeRemaining.textContent;
-        //     currentQuestion = 1;
-        //     show(cardFinish);
-        //     console.log(finalScore);
-        // }
         if (secondsLeft === 0) {
             // This bit may need cleanup
             clearInterval(timer);
@@ -179,6 +169,11 @@ scoreButton.addEventListener("click", function () {
     }
 });
 
+resetScore.addEventListener("click", function () {
+    highscores = highscoresDefault;
+    setScores();
+});
+
 back.addEventListener("click", function () {
     hide(cardHighscore);
     show(cardTitle);
@@ -219,6 +214,7 @@ submitInit.addEventListener("click", function () {
     enableHighscore();
     hide(cardFinish);
     show(cardHighscore);
+    initials.value = "";
 });
 
 
