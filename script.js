@@ -89,10 +89,12 @@ var questions = {
     }
 }
 
-// This establishes the initial display time.
+// This displays the initial time remaining.
 displayTime();
 // This populates the high-score page on first use.
-setScores();
+if (highscores === null) {
+    highscores = highscoresDefault;
+} 
 
 function quizTimer() {
     timer = setInterval(function() {
@@ -128,12 +130,8 @@ function compareScore(a, b) {
     return result;
 }
 
-function setScores() {
-    if (highscores === null) {
-        highscores = highscoresDefault;
-    } else {
-        highscores.sort(compareScore);
-    }
+function setScores() {    
+    highscores.sort(compareScore);
     if (highscores.length > 10) {
         highscores.pop();
     }
@@ -143,13 +141,11 @@ function setScores() {
     for (var value of highscores) {
         var li = document.createElement("li");
         li.textContent = value.name;
-        console.log(value.name);
         displayName.appendChild(li);
     }
     for (var value of highscores) {
         var li = document.createElement("li");
         li.textContent = value.score;
-        console.log(value.score);
         displayScore.appendChild(li);
     }
 }
@@ -210,7 +206,7 @@ scoreButton.addEventListener("click", function () {
 });
 
 resetScore.addEventListener("click", function () {
-    highscores = highscoresDefault;
+    highscores = [];
     setScores();
 });
 
@@ -223,7 +219,6 @@ cardQuestion.querySelector("ol").addEventListener("click", function (event) {
     if (event.target.id !== questions[currentQuestion].solution){
         secondsLeft -= 10;
         timerButton.setAttribute("id", "incorrect");
-        console.log(timerButton.getAttributeNames());
         displayTime();
     }
     if (currentQuestion === Object.keys(questions).length) {
@@ -233,7 +228,6 @@ cardQuestion.querySelector("ol").addEventListener("click", function (event) {
         currentQuestion = 1;
         finalScore.textContent = timeRemaining.textContent;
         show(cardFinish);
-        console.log("You're finished playing");
     } else {
         currentQuestion++;
         setQuestion();
