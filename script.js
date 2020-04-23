@@ -248,4 +248,5 @@ submitInit.addEventListener("click", function () {
     hide(cardFinish);
     show(cardHighscore);
     initials.value = "";
+    playerName = "ANON";
 });
